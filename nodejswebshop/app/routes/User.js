@@ -8,4 +8,8 @@ router.get("/login", (req, res) => {
   res.render("login", { name: "Mathieu" });
 });
 
+router.get("/register", (req, res) => {
+  res.render("register", { name: "Mathieu" });
+});
+
 module.exports = router;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../css/register.css" />
+    <title>Seconde template EJS</title>
+  </head>
+  <body>
+    <h1>Bienvenue</h1>
+    <form action="post">
+      <label for="Username">Username:</label><br />
+      <input
+        type="text"
+        id="Username"
+        name="Username"
+        placeholder="Entrer le nom d'utilisateur"
+      /><br />
+      <label for="Mail">Mail:</label><br />
+      <input
+        type="email"
+        id="Mail"
+        name="Mail"
+        placeholder="Entrer votre adresse Mail"
+      /><br />
+      <label for="Password">Password:</label><br />
+      <input
+        type="text"
+        id="Password"
+        name="Password"
+        placeholder="Entrer le mot de passe"
+      /><br /><label for="Confirmationpassword">Confirmation du password:</label
+      ><br />
+      <input
+        type="text"
+        id="Confirmationpassword"
+        name="Confirmationpassword"
+        placeholder="Entrer à nouveau mot de passe"
+      /><br />
+      <input type="submit" value="Créer" />
+    </form>
+
+    <p>
+      <a href="http://localhost:8080/user/login">se connecter!</a>
+    </p>
+  </body>
+</html>
