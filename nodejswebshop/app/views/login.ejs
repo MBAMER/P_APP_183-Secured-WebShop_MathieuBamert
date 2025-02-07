@@ -6,18 +6,20 @@
     <title>Premier template EJS</title>
   </head>
   <body>
-    <h1>Bienvenue <%= name %>!</h1>
+    <h1>Bienvenue</h1>
     <form action="post">
-      <label for="Username">Username:</label><br />
+      <label for="Username">Username: *</label><br />
       <input
         type="text"
+        required
         id="Username"
         name="Username"
         placeholder="Entrer le nom d'utilisateur"
       /><br />
-      <label for="Password">Password:</label><br />
+      <label for="Password">Password: *</label><br />
       <input
-        type="text"
+        type="passwords"
+        required
         id="Password"
         name="Password"
         placeholder="Entrer le mot de passe"
@@ -27,7 +29,7 @@
 
     <p>
       Je n'ai pas de compte!
-      <a href="http://localhost:8080/user/register">Céer un compte</a>
+      <a href="http://localhost:8080/user/register">Créer un compte</a>
     </p>
   </body>
 </html>
