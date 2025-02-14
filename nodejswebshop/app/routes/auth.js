@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const controller = require("../controllers/AuthController");
+const controller = require("../controllers/authController");
 
 router.get("/", controller.get);
 

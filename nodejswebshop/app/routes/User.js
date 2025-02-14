@@ -5,11 +5,11 @@ const controller = require("../controllers/UserController");
 router.get("/", controller.get);
 
 router.get("/login", (req, res) => {
-  res.render("login", { name: "Mathieu" });
+  res.render("login", {});
 });
 
 router.get("/register", (req, res) => {
-  res.render("register", { name: "Mathieu" });
+  res.render("register", {});
 });
 
 module.exports = router;
