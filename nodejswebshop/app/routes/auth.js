@@ -1,7 +1,7 @@
 const express = require("express");
 
 const authRouter = express.Router();
-const controller = require("../controllers/authController");
+const controller = require("../controllers/AuthController");
 
 authRouter.get("/", controller.get);
 authRouter.get("/login", (req, res) => {
@@ -17,9 +17,7 @@ authRouter.post("/login", controller.loginUser);
 
 authRouter.get("/register", controller.getregister);
 
-authRouter.get("/home", (req, res) => {
-  res.render("home", {});
-});
+authRouter.get("/home", controller.verifyToken, controller.displayHome);
 
 authRouter.post("/register", controller.createUser);
 

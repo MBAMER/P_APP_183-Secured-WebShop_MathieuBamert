@@ -25,6 +25,10 @@ module.exports = {
     res.render("login", { name: "Mathieu" });
   },
 
+  displayHome: (req, res) => {
+    res.render("home", { name: "Mathieu" });
+  },
+
   getregister: (req, res) => {
     res.render("register", { name: "Mathieu" });
   },
@@ -69,13 +73,36 @@ module.exports = {
               { expiresIn: "1y", algorithm: "HS256" }
             );
             console.log(token);
-            res.cookie("token", token, { httpOnly: true });
+            res.cookie("auth_token", token, {
+              httpOnly: true, // Empêche l'accès par JavaScript côté client
+              secure: true, // Active uniquement en HTTPS
+              sameSite: "Strict", // Empêche les attaques CSRF
+              maxAge: 3600000, // Expire après 1h (3600000 ms)
+            });
             res.redirect("/home");
           } else {
             res.status(401).send("Mot de passe incorrect");
           }
         }
       });
+  },
+
+  verifyToken: async (req, res, next) => {
+    console.log("Mathieu");
+    const cookieTocken = req.cookies?.auth_token ?? null;
+    if (cookieTocken) {
+      try {
+        console.log("Mathieu1");
+        const decoded = jwt.verify(cookieTocken, "secret");
+        console.log("Mathieu2");
+      } catch (error) {
+        console.log({ message: "Tocken pas valable" + error });
+        return res.redirect("/login");
+      }
+    } else {
+      return res.redirect("/home");
+    }
+    next();
   },
 
   logout: (req, res) => {

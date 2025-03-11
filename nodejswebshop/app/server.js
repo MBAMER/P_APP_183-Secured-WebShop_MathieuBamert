@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,8 +15,6 @@ const userRoute = require("./routes/User");
 app.use("/user", userRoute);
 
 const authRouter = require("./routes/auth");
-app.use("/", authRouter);
-
 app.use("/home", authRouter);
 
 // Middleware pour analyser le corps des requêtes (JSON et URL-encoded)
