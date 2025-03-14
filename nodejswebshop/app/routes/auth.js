@@ -20,5 +20,7 @@ authRouter.get("/register", controller.getregister);
 authRouter.get("/home", controller.verifyToken, controller.displayHome);
 
 authRouter.post("/register", controller.createUser);
+//Logour
+authRouter.post("/logout", controller.logout);
 
 module.exports = authRouter;

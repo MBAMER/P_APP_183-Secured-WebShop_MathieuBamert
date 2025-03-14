@@ -15,7 +15,7 @@ const userRoute = require("./routes/User");
 app.use("/user", userRoute);
 
 const authRouter = require("./routes/auth");
-app.use("/home", authRouter);
+app.use("/", authRouter);
 
 // Middleware pour analyser le corps des requêtes (JSON et URL-encoded)
 app.use(express.json()); // Pour analyser le JSON dans les requêtes POST

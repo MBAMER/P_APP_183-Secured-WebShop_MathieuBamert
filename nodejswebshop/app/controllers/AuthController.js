@@ -1,5 +1,6 @@
 const mysql = require("mysql2/promise");
 const crypto = require("crypto");
+const { Console } = require("console");
 jwt = require("jsonwebtoken");
 const connection = mysql.createPool({
   host: "db_container",
@@ -52,7 +53,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-    res.redirect("/home");
+    res.redirect("//login");
   },
 
   loginUser: (req, res) => {
@@ -73,6 +74,7 @@ module.exports = {
               { expiresIn: "1y", algorithm: "HS256" }
             );
             console.log(token);
+
             res.cookie("auth_token", token, {
               httpOnly: true, // Empêche l'accès par JavaScript côté client
               secure: true, // Active uniquement en HTTPS
@@ -88,15 +90,12 @@ module.exports = {
   },
 
   verifyToken: async (req, res, next) => {
-    console.log("Mathieu");
     const cookieTocken = req.cookies?.auth_token ?? null;
     if (cookieTocken) {
       try {
-        console.log("Mathieu1");
         const decoded = jwt.verify(cookieTocken, "secret");
-        console.log("Mathieu2");
       } catch (error) {
-        console.log({ message: "Tocken pas valable" + error });
+        console.log({ message: "Token pas valable" + error });
         return res.redirect("/login");
       }
     } else {
@@ -107,6 +106,7 @@ module.exports = {
 
   logout: (req, res) => {
     res.clearCookie("token");
-    res.status(200).send("Utilisateur déconnecté");
+    //res.status(200).send("Utilisateur déconnecté");
+    res.redirect("/login");
   },
 };
